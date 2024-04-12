@@ -1,12 +1,13 @@
 ﻿namespace TodoApp.API;
 
-public static class EndpointExtensions
+public class TodoEndpoints : ICarterModule
 {
     private const string TodoEndpoint = "/todos";
-    public static void AddTodoEndpoints(this IEndpointRouteBuilder app)
+
+    public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet(TodoEndpoint, async (TodoDb db) =>
-       await db.TodoItems.ToListAsync());
+      await db.TodoItems.ToListAsync());
 
         app.MapGet($"{TodoEndpoint}/{{id}}", async (int id, TodoDb db) =>
                await db.TodoItems.FindAsync(id));

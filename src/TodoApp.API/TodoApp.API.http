@@ -8,11 +8,15 @@ GET {{TodoApp.API_HostAddress}}/todos/1
 
 ###
 
+GET {{TodoApp.API_HostAddress}}/todos/complete
+
+###
+
 POST {{TodoApp.API_HostAddress}}/todos
 Content-Type: application/json
 
 {
-    "name": "Need to go to Class"
+    "name": "Need to go to Market"
 }
 ###
 
@@ -21,7 +25,7 @@ PUT {{TodoApp.API_HostAddress}}/todos/1
 Content-Type: application/json
 
 {
-    "name": "Need to go to Market",
+    "name": "Need to go to Gym",
     "isCompleted": true
 }
 

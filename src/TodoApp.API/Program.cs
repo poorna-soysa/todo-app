@@ -15,6 +15,9 @@ app.MapGet("/todos", async (TodoDb db) =>
 app.MapGet("/todos/{id}", async (int id, TodoDb db) =>
        await db.TodoItems.FindAsync(id));
 
+app.MapGet("/todos/complete", async (TodoDb db) =>
+       await db.TodoItems.Where(d=> d.IsCompleted).ToListAsync());
+
 app.MapPost("/todos", async (CreateTodoItemDto request, TodoDb db) =>
 {
     TodoItem todo = new() { Name = request.Name };

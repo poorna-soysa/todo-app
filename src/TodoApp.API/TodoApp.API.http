@@ -1,0 +1,32 @@
+﻿@TodoApp.API_HostAddress = https://localhost:5001
+
+GET {{TodoApp.API_HostAddress}}/todos
+
+###
+
+GET {{TodoApp.API_HostAddress}}/todos/1
+
+###
+
+POST {{TodoApp.API_HostAddress}}/todos
+Content-Type: application/json
+
+{
+    "name": "Need to go to Class"
+}
+###
+
+
+PUT {{TodoApp.API_HostAddress}}/todos/1
+Content-Type: application/json
+
+{
+    "name": "Need to go to Market",
+    "isCompleted": true
+}
+
+###
+
+DELETE {{TodoApp.API_HostAddress}}/todos/1
+
+###

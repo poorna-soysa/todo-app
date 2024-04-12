@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TodoApp.API.Data;
-using TodoApp.API.Dtos;
-using TodoApp.API.Model;
-
-namespace TodoApp.API;
+﻿namespace TodoApp.API;
 
 public static class EndpointExtensions
 {

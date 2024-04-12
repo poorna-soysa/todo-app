@@ -16,7 +16,7 @@ POST {{TodoApp.API_HostAddress}}/todos
 Content-Type: application/json
 
 {
-    "name": "Need to go to Market"
+    "name": "Complete Todo project"
 }
 ###
 

@@ -7,7 +7,7 @@ public class TodoEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet(TodoEndpoint, async (TodoDb db) =>
-      await db.TodoItems.ToListAsync());
+        await db.TodoItems.ToListAsync());
 
         app.MapGet($"{TodoEndpoint}/{{id}}", async (int id, TodoDb db) =>
                await db.TodoItems.FindAsync(id));
@@ -15,7 +15,8 @@ public class TodoEndpoints : ICarterModule
         app.MapGet($"{TodoEndpoint}/complete", async (TodoDb db) =>
                await db.TodoItems.Where(d => d.IsCompleted).ToListAsync());
 
-        app.MapPost(TodoEndpoint, async (CreateTodoItemDto request, TodoDb db) =>
+        app.MapPost(TodoEndpoint,
+            async (CreateTodoItemDto request, TodoDb db) =>
         {
             TodoItem todo = new() { Name = request.Name };
 
@@ -25,7 +26,8 @@ public class TodoEndpoints : ICarterModule
             return Results.Created($"{TodoEndpoint}/{todo.Id}", todo);
         });
 
-        app.MapPut($"{TodoEndpoint}/{{id}}", async (int id, UpdateTodoItemDto request, TodoDb db) =>
+        app.MapPut($"{TodoEndpoint}/{{id}}",
+            async (int id, UpdateTodoItemDto request, TodoDb db) =>
         {
             var todo = await db.TodoItems.FindAsync(id);
 
@@ -41,7 +43,8 @@ public class TodoEndpoints : ICarterModule
             return Results.NoContent();
         });
 
-        app.MapDelete($"{TodoEndpoint}/{{id}}", async (int id, TodoDb db) =>
+        app.MapDelete($"{TodoEndpoint}/{{id}}",
+            async (int id, TodoDb db) =>
         {
             var todo = await db.TodoItems.FindAsync(id);
 

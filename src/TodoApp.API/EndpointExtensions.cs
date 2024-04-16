@@ -1,4 +1,6 @@
-﻿namespace TodoApp.API;
+﻿using TodoApp.API.Models;
+
+namespace TodoApp.API;
 
 public static class EndpointExtensions
 {

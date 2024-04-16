@@ -1,4 +1,6 @@
-﻿namespace TodoApp.API.Data;
+﻿using TodoApp.API.Models;
+
+namespace TodoApp.API.Data;
 
 public class TodoDb : DbContext
 {

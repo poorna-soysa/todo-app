@@ -36,7 +36,7 @@ internal class DeleteTodoCommandHandler(
 
         if (todo is null)
         {
-            throw new TodoNotFoundException(command.Id);
+            throw new NotFoundException(command.Id);
         }
 
         dbContext.TodoItems.Remove(todo);

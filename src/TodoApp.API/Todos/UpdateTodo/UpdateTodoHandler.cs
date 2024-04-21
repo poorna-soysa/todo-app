@@ -19,7 +19,7 @@ public class UpdateTodoCommandHandler(TodoDb dbContext, ILogger<UpdateTodoComman
 
         if (todo is null)
         {
-            throw new TodoNotFoundException(command.Id);
+            throw new NotFoundException(command.Id);
         }
 
         todo.Name = command.Name;

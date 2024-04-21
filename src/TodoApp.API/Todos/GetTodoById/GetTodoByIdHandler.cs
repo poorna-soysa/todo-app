@@ -20,7 +20,7 @@ internal class GetTodoByIdQueryHandler(TodoDb dbContext, ILogger<GetTodoByIdQuer
 
         if (todo is null)
         {
-            throw new TodoNotFoundException(query.Id);
+            throw new NotFoundException(query.Id);
         }
 
         return new GetTodoByIdResult(todo);

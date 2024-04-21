@@ -1,9 +1,19 @@
-﻿using TodoApp.API.Abstractions;
+﻿using FluentValidation;
+using TodoApp.API.Abstractions;
 
 namespace TodoApp.API.Todos.CreateTodo;
 
 public record CreateTodoCommand(string Name) : ICommand<CreateTodoResult>;
 public record CreateTodoResult(Guid Id);
+
+public class CreateTodoCommandValidator : AbstractValidator<CreateTodoCommand>
+{
+    public CreateTodoCommandValidator()
+    {
+        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required!");
+    }
+}
+
 internal class CreateTodoCommandHandler(TodoDb dbContext, ILogger<CreateTodoCommandHandler> logger)
     : ICommandHandler<CreateTodoCommand, CreateTodoResult>
 {
@@ -19,7 +29,7 @@ internal class CreateTodoCommandHandler(TodoDb dbContext, ILogger<CreateTodoComm
 
         dbContext.TodoItems.Add(todo);
 
-        await dbContext.SaveChangesAsync(cancellationToken  );
+        await dbContext.SaveChangesAsync(cancellationToken);
 
         return new CreateTodoResult(todo.Id);
     }

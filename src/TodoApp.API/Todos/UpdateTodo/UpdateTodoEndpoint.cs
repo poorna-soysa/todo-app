@@ -1,7 +1,18 @@
-﻿namespace TodoApp.API.Todos.UpdateTodo;
+﻿using FluentValidation;
+
+namespace TodoApp.API.Todos.UpdateTodo;
 
 public record UpdateTodoRequest(Guid Id, string Name, bool IsCompleted);
 public record UpdateTodoResponse(bool IsSuccess);
+
+public class UpdateTodoCommandValidator : AbstractValidator<UpdateTodoRequest>
+{
+    public UpdateTodoCommandValidator()
+    {
+        RuleFor(x => x.Id).NotEmpty().WithMessage("Id is required!");
+        RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required!");
+    }
+}
 
 public class UpdateTodoEndpoint : ICarterModule
 {

@@ -1,17 +1,26 @@
-﻿using MediatR;
-using TodoApp.API.Abstractions;
+﻿using TodoApp.API.Abstractions;
 
 namespace TodoApp.API.Todos.CreateTodo;
 
 public record CreateTodoCommand(string Name) : ICommand<CreateTodoResult>;
 public record CreateTodoResult(Guid Id);
-internal class CreateTodoCommandHandler
+internal class CreateTodoCommandHandler(TodoDb dbContext, ILogger<CreateTodoCommandHandler> logger)
     : ICommandHandler<CreateTodoCommand, CreateTodoResult>
 {
     public async Task<CreateTodoResult> Handle(CreateTodoCommand command,
         CancellationToken cancellationToken)
     {
+        logger.LogInformation("CreateTodoHandler.Handle is called with {command}", command);
 
-        return new CreateTodoResult(Guid.NewGuid());
+        var todo = new TodoItem
+        {
+            Name = command.Name
+        };
+
+        dbContext.TodoItems.Add(todo);
+
+        await dbContext.SaveChangesAsync(cancellationToken  );
+
+        return new CreateTodoResult(todo.Id);
     }
 }

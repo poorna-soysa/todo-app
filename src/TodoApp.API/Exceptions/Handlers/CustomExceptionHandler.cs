@@ -7,7 +7,8 @@ namespace TodoApp.API.Exceptions.Handlers;
 internal class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger)
     : IExceptionHandler
 {
-    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext,
+    public async ValueTask<bool> TryHandleAsync(
+        HttpContext httpContext,
         Exception exception,
         CancellationToken cancellationToken)
     {
@@ -15,24 +16,30 @@ internal class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger)
             "Error Message: {exceptionMessage}, Occurred at:{time}"
             , exception.Message, DateTime.UtcNow);
 
+        int statusCode = GetStatusCodeFromException(exception);
+
+        httpContext.Response.StatusCode = statusCode;
+
         ProblemDetails problemDetails = new()
         {
             Title = exception.GetType().Name,
             Detail = exception.Message,
-            Status = GetStatusCodeFromException(exception),
+            Status = statusCode,
             Instance = httpContext.Request.Path
         };
 
-        problemDetails.Extensions.Add("traceId", httpContext.TraceIdentifier);
+        problemDetails.Extensions.Add("traceId", 
+            httpContext.TraceIdentifier);
 
         if (exception is ValidationException validationException)
         {
-            problemDetails.Extensions.Add("ValidationErrors", validationException.Errors);
+            problemDetails.Extensions.Add("ValidationErrors", 
+                validationException.Errors);
         }
 
-        httpContext.Response.StatusCode = (int)problemDetails.Status;
-            
-        await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
+        await httpContext
+            .Response
+            .WriteAsJsonAsync(problemDetails, cancellationToken);
         return true;
     }
 

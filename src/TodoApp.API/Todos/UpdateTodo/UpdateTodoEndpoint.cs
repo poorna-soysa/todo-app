@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace TodoApp.API.Todos.UpdateTodo;
+﻿namespace TodoApp.API.Todos.UpdateTodo;
 
 public record UpdateTodoRequest(Guid Id, string Name, bool IsCompleted);
 public record UpdateTodoResponse(bool IsSuccess);

@@ -1,7 +1,4 @@
-﻿using FluentValidation;
-using TodoApp.API.Abstractions;
-
-namespace TodoApp.API.Todos.CreateTodo;
+﻿namespace TodoApp.API.Todos.CreateTodo;
 
 public record CreateTodoCommand(string Name) : ICommand<CreateTodoResult>;
 public record CreateTodoResult(Guid Id);
@@ -14,14 +11,12 @@ public class CreateTodoCommandValidator : AbstractValidator<CreateTodoCommand>
     }
 }
 
-internal class CreateTodoCommandHandler(TodoDb dbContext, ILogger<CreateTodoCommandHandler> logger)
+internal class CreateTodoCommandHandler(TodoDb dbContext)
     : ICommandHandler<CreateTodoCommand, CreateTodoResult>
 {
     public async Task<CreateTodoResult> Handle(CreateTodoCommand command,
         CancellationToken cancellationToken)
     {
-        logger.LogInformation("CreateTodoHandler.Handle is called with {command}", command);
-
         var todo = new TodoItem
         {
             Name = command.Name

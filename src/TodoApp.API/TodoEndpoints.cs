@@ -1,62 +1,64 @@
-﻿namespace TodoApp.API;
+﻿using TodoApp.API.Models;
 
-public class TodoEndpoints : ICarterModule
-{
-    private const string TodoEndpoint = "/todos";
+namespace TodoApp.API;
 
-    public void AddRoutes(IEndpointRouteBuilder app)
-    {
-        app.MapGet(TodoEndpoint, async (TodoDb db) =>
-        await db.TodoItems.ToListAsync());
+//public class TodoEndpoints : ICarterModule
+//{
+//    private const string TodoEndpoint = "/todos";
 
-        app.MapGet($"{TodoEndpoint}/{{id}}", async (int id, TodoDb db) =>
-               await db.TodoItems.FindAsync(id));
+//    public void AddRoutes(IEndpointRouteBuilder app)
+//    {
+//        app.MapGet(TodoEndpoint, async (TodoDb db) =>
+//        await db.TodoItems.ToListAsync());
 
-        app.MapGet($"{TodoEndpoint}/complete", async (TodoDb db) =>
-               await db.TodoItems.Where(d => d.IsCompleted).ToListAsync());
+//        app.MapGet($"{TodoEndpoint}/{{id}}", async (int id, TodoDb db) =>
+//               await db.TodoItems.FindAsync(id));
 
-        app.MapPost(TodoEndpoint,
-            async (CreateTodoItemDto request, TodoDb db) =>
-        {
-            TodoItem todo = new() { Name = request.Name };
+//        app.MapGet($"{TodoEndpoint}/complete", async (TodoDb db) =>
+//               await db.TodoItems.Where(d => d.IsCompleted).ToListAsync());
 
-            db.TodoItems.Add(todo);
-            await db.SaveChangesAsync();
+//        app.MapPost(TodoEndpoint,
+//            async (CreateTodoItemDto request, TodoDb db) =>
+//        {
+//            TodoItem todo = new() { Name = request.Name };
 
-            return Results.Created($"{TodoEndpoint}/{todo.Id}", todo);
-        });
+//            db.TodoItems.Add(todo);
+//            await db.SaveChangesAsync();
 
-        app.MapPut($"{TodoEndpoint}/{{id}}",
-            async (int id, UpdateTodoItemDto request, TodoDb db) =>
-        {
-            var todo = await db.TodoItems.FindAsync(id);
+//            return Results.Created($"{TodoEndpoint}/{todo.Id}", todo);
+//        });
 
-            if (todo is null)
-            {
-                return Results.NotFound();
-            }
+//        app.MapPut($"{TodoEndpoint}/{{id}}",
+//            async (int id, UpdateTodoItemDto request, TodoDb db) =>
+//        {
+//            var todo = await db.TodoItems.FindAsync(id);
 
-            todo.Name = request.Name;
-            todo.IsCompleted = request.IsCompleted;
-            await db.SaveChangesAsync();
+//            if (todo is null)
+//            {
+//                return Results.NotFound();
+//            }
 
-            return Results.NoContent();
-        });
+//            todo.Name = request.Name;
+//            todo.IsCompleted = request.IsCompleted;
+//            await db.SaveChangesAsync();
 
-        app.MapDelete($"{TodoEndpoint}/{{id}}",
-            async (int id, TodoDb db) =>
-        {
-            var todo = await db.TodoItems.FindAsync(id);
+//            return Results.NoContent();
+//        });
 
-            if (todo is null)
-            {
-                return Results.NotFound();
-            }
+//        app.MapDelete($"{TodoEndpoint}/{{id}}",
+//            async (int id, TodoDb db) =>
+//        {
+//            var todo = await db.TodoItems.FindAsync(id);
 
-            db.TodoItems.Remove(todo);
-            await db.SaveChangesAsync();
+//            if (todo is null)
+//            {
+//                return Results.NotFound();
+//            }
 
-            return Results.NoContent();
-        });
-    }
-}
+//            db.TodoItems.Remove(todo);
+//            await db.SaveChangesAsync();
+
+//            return Results.NoContent();
+//        });
+//    }
+//}

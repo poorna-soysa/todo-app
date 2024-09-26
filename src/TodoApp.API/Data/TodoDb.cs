@@ -1,4 +1,4 @@
-﻿using TodoApp.API.Models;
+﻿using TodoApp.API.Entities;
 
 namespace TodoApp.API.Data;
 

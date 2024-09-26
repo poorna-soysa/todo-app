@@ -1,4 +1,4 @@
-﻿namespace TodoApp.API.Models;
+﻿namespace TodoApp.API.Entities;
 
 public class TodoItem
 {

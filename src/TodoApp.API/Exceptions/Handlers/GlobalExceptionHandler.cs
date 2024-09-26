@@ -1,10 +1,9 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TodoApp.API.Exceptions.Handlers;
 
-internal class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger)
+internal class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
     : IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(

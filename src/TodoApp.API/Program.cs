@@ -6,7 +6,7 @@ builder.Services
     .AddInMemomeryDatabase()
     .AddMediatRConfiguration(assembly)
     .AddCarter()
-    .AddExceptionHandler<CustomExceptionHandler>()
+    .AddExceptionHandler<GlobalExceptionHandler>()
     .AddProblemDetails()
     .AddValidatorsFromAssembly(assembly);
 

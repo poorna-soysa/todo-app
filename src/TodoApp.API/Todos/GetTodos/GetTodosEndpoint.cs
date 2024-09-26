@@ -1,7 +1,7 @@
 ﻿namespace TodoApp.API.Todos.GetTodos;
 
 public record GetTodosRequest();
-public record GetTodosResponse(IEnumerable<TodoItem> Todos);
+public record GetTodosResponse(Guid Id, string Name, bool IsComplete);
 
 public class GetTodosEndpoint : ICarterModule
 {
@@ -11,7 +11,7 @@ public class GetTodosEndpoint : ICarterModule
         {
             var result = await sender.Send(new GetTodosQuery());
 
-            var response = result.Adapt<GetTodosResponse>();
+            var response = result.Adapt<IEnumerable<GetTodosResponse>>();
 
             return Results.Ok(response);
         })

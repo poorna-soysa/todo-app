@@ -1,8 +1,3 @@
-
-using FluentValidation;
-using TodoApp.API.Behaviors;
-using TodoApp.API.Exceptions.Handlers;
-
 var builder = WebApplication.CreateBuilder(args);
 
 var assembly = typeof(Program).Assembly;

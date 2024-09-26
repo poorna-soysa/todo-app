@@ -4,7 +4,7 @@ GET {{TodoApp.API_HostAddress}}/todos
 
 ###
 
-GET {{TodoApp.API_HostAddress}}/todos/e1fe37df-08d5-4c1f-a1e6-0889b8dc83e8
+GET {{TodoApp.API_HostAddress}}/todos/1e4e0603-adf5-42f8-b44f-f324a6230b94
 
 ###
 
@@ -16,7 +16,7 @@ POST {{TodoApp.API_HostAddress}}/todos
 Content-Type: application/json
 
 {
-    "name": "Complete Todo project"
+    "name": "Finish reading Clean Code with C# book"
 }
 ###
 

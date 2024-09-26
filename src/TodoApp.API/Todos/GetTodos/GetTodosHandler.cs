@@ -1,14 +1,22 @@
-﻿namespace TodoApp.API.Todos.GetTodos;
+﻿using System.Collections.Generic;
 
-public record GetTodosQuery() : IQuery<GetTodosResult>;
-public record GetTodosResult(IEnumerable<TodoItem> Todos);
+namespace TodoApp.API.Todos.GetTodos;
+
+public record GetTodosQuery() : IQuery<IEnumerable<GetTodosResult>>;
+public record GetTodosResult(Guid Id, string Name, bool IsCompleted);
 internal class GetTodosQueryHandler(TodoDb dbContext)
-    : IQueryHandler<GetTodosQuery, GetTodosResult>
+    : IQueryHandler<GetTodosQuery, IEnumerable<GetTodosResult>>
 {
-    public async Task<GetTodosResult> Handle(GetTodosQuery query, CancellationToken cancellationToken)
+    public async Task<IEnumerable<GetTodosResult>> Handle(
+        GetTodosQuery query, 
+        CancellationToken cancellationToken)
     {
-        var todos = await dbContext.TodoItems.ToListAsync(cancellationToken);
+        var todos = await dbContext
+            .TodoItems
+            .ToListAsync(cancellationToken);
 
-        return new GetTodosResult(todos);
+        var result = todos.Adapt<IEnumerable<GetTodosResult>>();
+
+        return result;
     }
 }

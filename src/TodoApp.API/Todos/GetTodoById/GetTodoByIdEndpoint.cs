@@ -1,6 +1,6 @@
 ﻿namespace TodoApp.API.Todos.GetTodoById;
 
-public record GetTodoByIdResponse(TodoItem Todo);
+public record GetTodoByIdResponse(Guid Id, string Name, bool IsCompleted);
 public class GetTodoByIdEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
-
-namespace TodoApp.API.Behaviors;
+﻿namespace TodoApp.API.Behaviors;
 
 internal sealed class LoggingBehavior<TRequest, TResponse>(
     ILogger<LoggingBehavior<TRequest, TResponse>> logger)

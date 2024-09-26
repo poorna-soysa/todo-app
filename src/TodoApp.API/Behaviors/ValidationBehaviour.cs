@@ -1,7 +1,4 @@
-﻿using FluentValidation;
-using TodoApp.API.Abstractions;
-
-namespace TodoApp.API.Behaviors;
+﻿namespace TodoApp.API.Behaviors;
 
 public class ValidationBehavior<TRequest, TResponse>
     (IEnumerable<IValidator<TRequest>> validators)

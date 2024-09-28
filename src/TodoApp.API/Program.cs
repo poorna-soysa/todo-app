@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 var assembly = typeof(Program).Assembly;
 
 builder.Services
-    .AddInMemomeryDatabase()
+    .AddPostgresSQLDatabase(builder.Configuration)
     .AddMediatRConfiguration(assembly)
     .AddCarter()
     .AddExceptionHandler<GlobalExceptionHandler>()

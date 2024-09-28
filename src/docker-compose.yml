@@ -1,0 +1,6 @@
+services:
+  tododb:
+    image: postgres
+    
+volumes:
+  postgres_todo:

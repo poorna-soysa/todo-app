@@ -1,4 +1,4 @@
-﻿namespace TodoApp.API.Todos.CreateTodo;
+﻿namespace TodoApp.API.Features.ToDos.CreateTodo;
 
 public record CreateTodoCommand(string Name) : ICommand<CreateTodoResult>;
 public record CreateTodoResult(Guid Id);

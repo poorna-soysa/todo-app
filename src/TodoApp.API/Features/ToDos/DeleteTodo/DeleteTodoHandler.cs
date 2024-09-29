@@ -1,4 +1,4 @@
-﻿namespace TodoApp.API.Todos.DeleteTodo;
+﻿namespace TodoApp.API.Features.ToDos.DeleteTodo;
 
 public record DeleteTodoCommand(Guid Id) : ICommand<DeleteTodoResult>;
 public record DeleteTodoResult(bool IsSuccess);

@@ -1,4 +1,4 @@
-﻿namespace TodoApp.API.Todos.CreateTodo;
+﻿namespace TodoApp.API.Features.ToDos.CreateTodo;
 
 public record CreateTodoRequest(string Name);
 public record CreateTodoResponse(Guid Id);

@@ -1,4 +1,4 @@
-﻿namespace TodoApp.API.Todos.GetTodos;
+﻿namespace TodoApp.API.Features.ToDos.GetTodos;
 
 public record GetTodosRequest();
 public record GetTodosResponse(Guid Id, string Name, bool IsComplete);

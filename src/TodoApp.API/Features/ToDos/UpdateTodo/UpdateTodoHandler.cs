@@ -1,4 +1,4 @@
-﻿namespace TodoApp.API.Todos.UpdateTodo;
+﻿namespace TodoApp.API.Features.ToDos.UpdateTodo;
 
 public record UpdateTodoCommand(Guid Id, string Name, bool IsCompleted) : ICommand<UpdateTodoResult>;
 public record UpdateTodoResult(bool IsSuccess);

@@ -1,4 +1,4 @@
-﻿namespace TodoApp.API.Todos.DeleteTodo;
+﻿namespace TodoApp.API.Features.ToDos.DeleteTodo;
 
 public record DeleteTodoResponse(bool IsSuccess);
 

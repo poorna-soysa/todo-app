@@ -1,4 +1,4 @@
-﻿namespace TodoApp.API.Todos.GetTodoById;
+﻿namespace TodoApp.API.Features.ToDos.GetTodoById;
 
 public record GetTodoByIdResponse(Guid Id, string Name, bool IsCompleted);
 public class GetTodoByIdEndpoint : ICarterModule

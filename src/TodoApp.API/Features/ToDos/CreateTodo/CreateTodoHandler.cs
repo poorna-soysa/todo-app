@@ -19,7 +19,8 @@ internal class CreateTodoCommandHandler(TodoDb dbContext)
     {
         var todo = new TodoItem
         {
-            Name = command.Name
+            Name = command.Name,
+            LastUpdatedOnUtc = DateTime.UtcNow
         };
 
         dbContext.TodoItems.Add(todo);

@@ -19,6 +19,7 @@ public class UpdateTodoCommandHandler(TodoDb dbContext)
 
         todo.Name = command.Name;
         todo.IsCompleted = command.IsCompleted;
+        todo.LastUpdatedOnUtc = DateTime.UtcNow;
 
         await dbContext.SaveChangesAsync(cancellationToken);
 

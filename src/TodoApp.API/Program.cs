@@ -3,12 +3,12 @@ var builder = WebApplication.CreateBuilder(args);
 var assembly = typeof(Program).Assembly;
 
 builder.Services
-    .AddInMemomeryDatabase()
+    .AddPostgresSQLDatabase(builder.Configuration)
     .AddMediatRConfiguration(assembly)
+    .AddValidatorsFromAssembly(assembly)
     .AddCarter()
     .AddExceptionHandler<GlobalExceptionHandler>()
-    .AddProblemDetails()
-    .AddValidatorsFromAssembly(assembly)
+    .AddProblemDetails()    
     .AddHealthChecks();
 
 var app = builder.Build();

@@ -1,4 +1,4 @@
-﻿namespace TodoApp.API.Todos.CreateTodo;
+﻿namespace TodoApp.API.Features.ToDos.CreateTodo;
 
 public record CreateTodoCommand(string Name) : ICommand<CreateTodoResult>;
 public record CreateTodoResult(Guid Id);
@@ -19,7 +19,8 @@ internal class CreateTodoCommandHandler(TodoDb dbContext)
     {
         var todo = new TodoItem
         {
-            Name = command.Name
+            Name = command.Name,
+            LastUpdatedOnUtc = DateTime.UtcNow
         };
 
         dbContext.TodoItems.Add(todo);

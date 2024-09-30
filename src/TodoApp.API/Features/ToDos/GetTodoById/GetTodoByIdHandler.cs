@@ -1,4 +1,4 @@
-﻿namespace TodoApp.API.Todos.GetTodoById;
+﻿namespace TodoApp.API.Features.ToDos.GetTodoById;
 
 public record GetTodoByIdQuery(Guid Id) : IQuery<GetTodoByIdResult>;
 public record GetTodoByIdResult(Guid Id, string Name, bool IsCompleted);

@@ -1,4 +1,4 @@
-﻿namespace TodoApp.API.Todos.UpdateTodo;
+﻿namespace TodoApp.API.Features.ToDos.UpdateTodo;
 
 public record UpdateTodoRequest(Guid Id, string Name, bool IsCompleted);
 public record UpdateTodoResponse(bool IsSuccess);

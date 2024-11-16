@@ -4,6 +4,10 @@ This repository hosts a simple todo application API built using the latest featu
 ## Table of Contents
 
 - [Getting Started](#getting-started)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Architecure Overview](#architecure-overview)
+- [Design Patterns](#design-patterns)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
@@ -23,7 +27,7 @@ To get a local copy up and running, follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/poorna-soysa/grpc-demo.git
+   git clone https://github.com/poorna-soysa/todo-app.git
    ```
 2. Navigate to the project directory
    ```sh
@@ -74,6 +78,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 If you find this project helpful, consider buying me a coffee!
 
 [![Buy Me a Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/poorna.soysa)
-```
 
 

@@ -13,6 +13,7 @@ internal class GetTodosQueryHandler(TodoDb dbContext)
     {
         var todos = await dbContext
             .TodoItems
+            .TagWith($"GetTodos - {DateTime.UtcNow}")
             .ToListAsync(cancellationToken);
 
         var result = todos.Adapt<IEnumerable<GetTodosResult>>();
